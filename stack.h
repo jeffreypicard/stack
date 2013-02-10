@@ -1,9 +1,7 @@
 /*
  * stack.h
  *
- * A simple implementation of a stack.
- *
- * Copyright (c) 2012, Jeffrey Picard
+ * Copyright (c) 2012-2013, Jeffrey Picard
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,6 +28,10 @@
  * of the authors and should not be interpreted as representing official policies, 
  * either expressed or implied, of the FreeBSD Project.
  *
+ * -----------------------------------------------------------------------------
+ *
+ * A simple implementation of a stack.
+ *
  * Author: Jeffrey Picard
  */
 #ifndef _STACK_H_
@@ -40,7 +42,7 @@
 
 struct NODE_TYPE {
   void *data;
-  struct NODE_TYPE *next;
+  struct NODE_TYPE *link;
 } typedef NODE_TYPE;
 
 /*
@@ -60,4 +62,13 @@ int push( NODE_TYPE **, void * );
  * Returns 0 on success, non-zero otherwise.
  */
 int pop( NODE_TYPE **, void ** );
+
+/*
+ * get_link
+ *
+ * Takes a node and returns the node it links to.
+ * This function is used in the assembly pop function
+ * for implementing a lock free concurrent stack.
+ */
+NODE_TYPE *get_link( NODE_TYPE *);
 #endif

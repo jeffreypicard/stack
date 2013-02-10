@@ -1,9 +1,8 @@
 /*
  * stack.c
  *
- * A simple implementation of a stack.
  *
- * Copyright (c) 2012, Jeffrey Picard
+ * Copyright (c) 2012-2013, Jeffrey Picard
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,6 +29,10 @@
  * of the authors and should not be interpreted as representing official policies, 
  * either expressed or implied, of the FreeBSD Project.
  *
+ * -----------------------------------------------------------------------------
+ *
+ * A simple implementation of a stack.
+ *
  * Author: Jeffrey Picard
  */
 #include <stdlib.h>
@@ -42,7 +45,7 @@ int push( NODE_TYPE **root, void *data )
   if( !elem )
     return 1;
   elem->data = data;
-  elem->next = *root;
+  elem->link = *root;
   *root = elem;
   return 0;
 }
@@ -53,7 +56,12 @@ int pop( NODE_TYPE **root, void **data )
     return 1;
   *data = (*root)->data;
   NODE_TYPE *temp = *root;
-  *root = (*root)->next;
+  *root = (*root)->link;
   free( temp );
   return 0;
+}
+
+NODE_TYPE *get_link( NODE_TYPE *n )
+{
+  return n->link;
 }
