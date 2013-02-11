@@ -45,19 +45,23 @@ int push( NODE_TYPE **root, void *data )
   if( !elem )
     return 1;
   elem->data = data;
-  elem->link = *root;
-  *root = elem;
+  /*elem->link = *root;
+  *root = elem;*/
+  push_asm( root, &elem->link, &elem );
   return 0;
 }
 
 int pop( NODE_TYPE **root, void **data )
 {
+  NODE_TYPE *oldroot;
   if( !*root )
     return 1;
-  *data = (*root)->data;
+  /**data = (*root)->data;
   NODE_TYPE *temp = *root;
-  *root = (*root)->link;
-  free( temp );
+  *root = (*root)->link;*/
+  oldroot = pop_asm( root );
+  *data = oldroot->data;
+  free( oldroot );
   return 0;
 }
 

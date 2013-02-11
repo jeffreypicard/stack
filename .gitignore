@@ -1,2 +1,5 @@
 # Compiler output files
 *.o
+# Executables
+test_asm
+test_stack

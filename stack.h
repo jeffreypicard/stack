@@ -71,4 +71,17 @@ int pop( NODE_TYPE **, void ** );
  * for implementing a lock free concurrent stack.
  */
 NODE_TYPE *get_link( NODE_TYPE *);
+
+/*
+ * pop_asm
+ *
+ * Assembly version of pop
+ */
+NODE_TYPE *pop_asm( node ** );
+/*
+ * push_asm
+ *
+ * Assembly version of push
+ */
+void push_asm( NODE_TYPE **, NODE_TYPE **, NODE_TYPE ** );
 #endif
