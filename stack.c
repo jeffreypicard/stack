@@ -41,7 +41,7 @@
 
 int push( NODE_TYPE **root, void *data )
 {
-  NODE_TYPE *elem = calloc( 1, sizeof(NODE_TYPE) );
+  NODE_TYPE *elem = (NODE_TYPE*) calloc( 1, sizeof(NODE_TYPE) );
   if( !elem )
     return 1;
   elem->data = data;
